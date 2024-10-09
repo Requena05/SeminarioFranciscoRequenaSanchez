@@ -18,6 +18,9 @@ fun main(){
     println("Ejercicio 7: "+ mayus(texto))
     println("Ejercicio 8: "+ sumadigitos(entero))
     println("Ejercicio 9: "+ calMCD(88,64))
+    println("Ejercicio 10: "+ fibonacci(12))
+    println("Ejercicio 11: "+ primosrelativos(3,33))
+    println("Ejercicio 12: "+n_capicua(321))
 }
 //Ejercicio 1. Crea una función que obtenga el número máximo de una lista de
 //números
@@ -183,3 +186,52 @@ fun isPrimo(numero: Int): Boolean {
     }
     return primo
 }
+//Ejercicio 10. Crea una función que calcule el término n-ésimo de la sucesión de Finbonacci.
+
+fun fibonacci(n:Int):Int
+{
+   var arrayInt:IntArray= IntArray(n);
+    if(n==1)return 0
+    if(n==2)return 1
+    arrayInt[0]=0;
+    arrayInt[1]=1;
+    var total=0;
+    for (i in 2..arrayInt.size-1){
+       total=arrayInt[i-1]+arrayInt[i-2]
+       arrayInt[i]=total
+    }
+    return total;
+}
+//Ejercicio 11. Crea una función que determine si dos números son primos relativos.
+fun primosrelativos(n1:Int,n2:Int):Boolean{
+
+    var auxArray1:ArrayList<Int> = ArrayList<Int>()
+    var auxArray2:ArrayList<Int> = ArrayList<Int>()
+    var cont=0
+    auxArray1= sacarfactor(n1)
+    auxArray2= sacarfactor(n2)
+
+    for (i in 0..auxArray1.size-1) {
+        if (auxArray1[i] != auxArray2[i]){
+            return true
+
+        }
+
+    }
+
+    return false
+}
+//Ejercicio 12. Crea una función que determine si un número dado es capicúa
+
+    fun n_capicua(n1: Int):Boolean{
+
+        var aux1n=""+n1;
+        var aux2n=(""+n1).reversed()
+        if(aux1n.equals(aux2n)){
+            return true
+        }
+        return false
+    }
+//Ejercicio 13. Crea una función que dada una cadena de texto con formato Emmet
+//devuelva su correspondiente etiqueta HTML, teniendo en cuenta sólo los atributos
+//de clase e id.
