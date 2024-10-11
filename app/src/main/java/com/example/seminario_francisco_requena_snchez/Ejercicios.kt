@@ -240,32 +240,42 @@ fun primosrelativos(n1:Int,n2:Int):Boolean{
     fun Emmet(cadena: String):String{
         var emmet : Array<String> = Array(cadena.length){""}
         emmet[0]+="<"
+        var auxdiv=""
+        var auxclass=""
         if(cadena.length==1){
             return "<"+cadena+"></"+cadena+">"
         }
         for(i in 0..cadena.length-1){
             if(cadena[i]=='.'){
-                for(j in i .. cadena.length-1){
+                for(j in i+1 .. cadena.length-1){
                     if(cadena[j]=='#'){
-                      emmet[i] =" id= \" " + cadena[i] + " \" "
-                        }else{
-                        emmet[i] =" class= \" " + cadena[i] + " \" "
+                      emmet[i] =" id= \"" + cadena[i] + "\">"
+                        }
 
-                    }
+                    auxclass+=cadena[j].toString();
+                    emmet[i]= " class= \"$auxclass\">"
+
 
                 }
-                emmet[i]="/>"
+
             }else{
-                emmet[i]+= cadena[i].toString()
+                    emmet[i] += cadena[i].toString();
+
+            }
+            if (cadena[i]!='.' && emmet[i].length>=2){
+                auxdiv+=cadena[i]
+
             }
 
         }
 
+
         var aux=""
         for(i in 0..emmet.size-1){
-           println(emmet[i])
             aux+=emmet[i]
+
         }
+        aux+="<"+auxdiv+">/"
         return aux
 
     }
