@@ -21,6 +21,7 @@ fun main(){
     println("Ejercicio 10: "+ fibonacci(12))
     println("Ejercicio 11: "+ primosrelativos(3,33))
     println("Ejercicio 12: "+n_capicua(321))
+    println("Ejercicio 13: "+Emmet("div.oferta"))
 }
 //Ejercicio 1. Crea una función que obtenga el número máximo de una lista de
 //números
@@ -235,3 +236,44 @@ fun primosrelativos(n1:Int,n2:Int):Boolean{
 //Ejercicio 13. Crea una función que dada una cadena de texto con formato Emmet
 //devuelva su correspondiente etiqueta HTML, teniendo en cuenta sólo los atributos
 //de clase e id.
+
+    fun Emmet(cadena: String):String{
+        var emmet : Array<String> = Array(cadena.length){""}
+        emmet[0]+="<"
+        if(cadena.length==1){
+            return "<"+cadena+"></"+cadena+">"
+        }
+        for(i in 0..cadena.length-1){
+            if(cadena[i]=='.'){
+                for(j in i .. cadena.length-1){
+                    if(cadena[j]=='#'){
+                      emmet[i] =" id= \" " + cadena[i] + " \" "
+                        }else{
+                        emmet[i] =" class= \" " + cadena[i] + " \" "
+
+                    }
+
+                }
+                emmet[i]="/>"
+            }else{
+                emmet[i]+= cadena[i].toString()
+            }
+
+        }
+
+        var aux=""
+        for(i in 0..emmet.size-1){
+           println(emmet[i])
+            aux+=emmet[i]
+        }
+        return aux
+
+    }
+//etiqueta =a
+//<etiqueta></etiqueta>
+
+//a.clase
+//<etiqueta class="clase"></etiqueta>
+
+//a.clase#id
+//<etiqueta class="clase" id="id"></etiqueta>
