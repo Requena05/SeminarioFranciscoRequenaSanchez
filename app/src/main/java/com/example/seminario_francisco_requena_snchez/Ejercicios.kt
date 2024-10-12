@@ -21,7 +21,8 @@ fun main(){
     println("Ejercicio 10: "+ fibonacci(12))
     println("Ejercicio 11: "+ primosrelativos(3,33))
     println("Ejercicio 12: "+n_capicua(321))
-    println("Ejercicio 13: "+Emmet("div.oferta"))
+    println("Ejercicio 13: "+Emmet("div.oferta#id"))
+    println("Ejercicio 14: "+mosaisco(4))
 }
 //Ejercicio 1. Crea una función que obtenga el número máximo de una lista de
 //números
@@ -237,11 +238,12 @@ fun primosrelativos(n1:Int,n2:Int):Boolean{
 //devuelva su correspondiente etiqueta HTML, teniendo en cuenta sólo los atributos
 //de clase e id.
 
-    fun Emmet(cadena: String):String{
+    fun Emmet(cadena: String):String {
         var emmet : Array<String> = Array(cadena.length){""}
         emmet[0]+="<"
         var auxdiv=""
         var auxclass=""
+        var auxid=""
         if(cadena.length==1){
             return "<"+cadena+"></"+cadena+">"
         }
@@ -249,35 +251,27 @@ fun primosrelativos(n1:Int,n2:Int):Boolean{
             if(cadena[i]=='.'){
                 for(j in i+1 .. cadena.length-1){
                     if(cadena[j]=='#'){
-                      emmet[i] =" id= \"" + cadena[i] + "\">"
-                        }
-
+                        auxid+=cadena[j].toString();
+                        emmet[i]= " id= \"$auxid\">"
+                    }
                     auxclass+=cadena[j].toString();
                     emmet[i]= " class= \"$auxclass\">"
-
-
                 }
-
             }else{
-                    emmet[i] += cadena[i].toString();
-
+                emmet[i] += cadena[i].toString();
             }
-            if (cadena[i]!='.' && emmet[i].length>=2){
-                auxdiv+=cadena[i]
-
-            }
-
         }
-
-
-        var aux=""
+        auxdiv="div"
+        var aux=" "
         for(i in 0..emmet.size-1){
-            aux+=emmet[i]
-
+                if (emmet[i]!=">") {
+                    aux += emmet[i]
+                }else {
+                aux+="</"+auxdiv+">"
+                return aux}
         }
-        aux+="<"+auxdiv+">/"
+        aux+="</"+auxdiv+">"
         return aux
-
     }
 //etiqueta =a
 //<etiqueta></etiqueta>
@@ -287,3 +281,17 @@ fun primosrelativos(n1:Int,n2:Int):Boolean{
 
 //a.clase#id
 //<etiqueta class="clase" id="id"></etiqueta>
+
+
+//Ejercicio 14. Crea una función que dado un número n imprima el siguiente ‘mosaico’
+fun mosaisco(n:Int){
+
+    var aux:IntArray=IntArray(n)
+    for(i in 0..n){
+        for (j in 0..aux.size-1){
+            aux[j]=i
+            if()
+        }
+        println(aux[i])
+    }
+}
