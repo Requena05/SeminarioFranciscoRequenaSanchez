@@ -1,13 +1,12 @@
 package com.example.seminario_francisco_requena_snchez
 
-import kotlin.math.max
-
 fun main(){
     var d = intArrayOf(1, 2, 3, 4, 5)
     var c:Float= 12.0F
     var S:String="ana"
     var b:Char='o'
     var entero=12345
+    var listOfArrays = listOf(intArrayOf(1, 2, 3,4), intArrayOf(4, 5, 6))
     var texto:String="Hola viva el betis y odio al sevilla a "
     println("Ejercicio 1: "+Max(d))
     println("Ejercicio 2: "+sumatoria(d))
@@ -21,8 +20,10 @@ fun main(){
     println("Ejercicio 10: "+ fibonacci(12))
     println("Ejercicio 11: "+ primosrelativos(3,33))
     println("Ejercicio 12: "+n_capicua(321))
-    println("Ejercicio 13: "+Emmet("div.oferta#id"))
-    println("Ejercicio 14: "+mosaisco(4))
+    println("Ejercicio 13: "+Emmet("div.oferta"))
+    println("Ejercicio 14: "+mosaisco(6))
+    println("Ejercicio 15: " + buscar(intArrayOf(1, 2, 3, 4, 5), intArrayOf(2, 2, 3, 4, 6)).contentToString())
+    println("Ejercicio 16: "+productodelista(listOfArrays))
 }
 //Ejercicio 1. Crea una función que obtenga el número máximo de una lista de
 //números
@@ -283,15 +284,50 @@ fun primosrelativos(n1:Int,n2:Int):Boolean{
 //<etiqueta class="clase" id="id"></etiqueta>
 
 
-//Ejercicio 14. Crea una función que dado un número n imprima el siguiente ‘mosaico’
-fun mosaisco(n:Int){
 
-    var aux:IntArray=IntArray(n)
-    for(i in 0..n){
-        for (j in 0..aux.size-1){
-            aux[j]=i
-            if()
+
+//Ejercicio 14. Crea una función que dado un número n imprima el siguiente ‘mosaico’
+fun mosaisco(n:Int):String{
+    var aux:String=""
+    var mos:String=""
+    aux ="\n"
+    for(i in 1..n){
+        for (j in 1.. i.toInt()) {
+            mos += "" + i
+
         }
-        println(aux[i])
+        aux+=mos+"\n"
+        mos=""
+        "\n"
     }
+    return aux
 }
+//Ejercicio 15. Crear una función que reciba dos arrays de enteros y devuelva un array de booleanos
+//que determine si los elementos, uno a uno, de ambos arrays son iguales
+fun buscar(array1:IntArray,array2:IntArray):BooleanArray{
+
+    var busca: BooleanArray = BooleanArray(array1.size)
+    for(i in 0..array1.size-1){
+        if(array1[i]==array2[i]){
+            busca[i]=true
+        }else{
+            busca[i]=false
+        }
+
+    }
+    return busca
+}
+//Ejercicio 16: Crea una función que calcule el producto de todos los elementos en
+//una lista de números.
+
+fun productodelista(lista:List<IntArray>): Int {
+    var totalProduct = 1
+    for (listita in lista) {
+        for (numerosito in listita) {
+            totalProduct *= numerosito
+        }
+    }
+    return totalProduct
+}
+//Ejercicio 17: Crea una función que dada una lista de números, devuelva una nueva
+//lista con solo los números pares. 
