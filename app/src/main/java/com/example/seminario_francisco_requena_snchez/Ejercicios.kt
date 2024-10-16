@@ -1,5 +1,7 @@
 package com.example.seminario_francisco_requena_snchez
 
+import kotlin.math.pow
+
 fun main(){
     var d = intArrayOf(1, 2, 3, 4, 5)
     var c:Float= 12.0F
@@ -20,10 +22,17 @@ fun main(){
     println("Ejercicio 10: "+ fibonacci(12))
     println("Ejercicio 11: "+ primosrelativos(3,33))
     println("Ejercicio 12: "+n_capicua(321))
-    println("Ejercicio 13: "+Emmet("div.oferta"))
+    println("Ejercicio 13: "+Emmet("div.oferta#coche"))
     println("Ejercicio 14: "+mosaisco(6))
     println("Ejercicio 15: " + buscar(intArrayOf(1, 2, 3, 4, 5), intArrayOf(2, 2, 3, 4, 6)).contentToString())
     println("Ejercicio 16: "+productodelista(listOfArrays))
+    println("Ejercicio 17: "+ListaPares(listOf(intArrayOf(1, 2, 3,4))))
+    println("Ejercicio 18: "+Primo(7))
+    println("Ejercicio 19: "+borrarCadena("YO HAO LO QUE ME DA LA GAA"))
+    println("Ejercicio 20: "+factorial(5))
+    println("Ejercicio 21: "+invierte("hola"))
+    println("Ejercicio 22: "+perfecto(26))
+    println("Ejercicio 23: "+Armstrong(153))
 }
 //Ejercicio 1. Crea una función que obtenga el número máximo de una lista de
 //números
@@ -259,7 +268,18 @@ fun primosrelativos(n1:Int,n2:Int):Boolean{
                     emmet[i]= " class= \"$auxclass\">"
                 }
             }else{
-                emmet[i] += cadena[i].toString();
+                //si hay algun elemento anterior que sea '>' entonces no hacemos print
+                var hay = false
+                for(j in 0 .. i){
+                    if(emmet[j].contains('>')){
+                        hay=true
+                    }
+
+                }
+                if(!hay){
+                    emmet[i]+=cadena[i].toString()
+
+                }
             }
         }
         auxdiv="div"
@@ -268,8 +288,9 @@ fun primosrelativos(n1:Int,n2:Int):Boolean{
                 if (emmet[i]!=">") {
                     aux += emmet[i]
                 }else {
-                aux+="</"+auxdiv+">"
-                return aux}
+                    aux+="</"+auxdiv+">"
+                    return aux
+                }
         }
         aux+="</"+auxdiv+">"
         return aux
@@ -330,4 +351,137 @@ fun productodelista(lista:List<IntArray>): Int {
     return totalProduct
 }
 //Ejercicio 17: Crea una función que dada una lista de números, devuelva una nueva
-//lista con solo los números pares. 
+//lista con solo los números pares.
+
+fun ListaPares(lista1: List<IntArray>):List<Int>{
+    var lista2:ArrayList<Int> = ArrayList<Int>()
+
+    for(lista in lista1){
+        for (listita in lista){
+            if(listita%2==0){
+                lista2.add(listita)
+            }
+        }
+        }
+    return lista2
+}
+//Ejercicio 18: Crea una función que determine si un número es primo.
+
+fun Primo(numero: Int): Boolean {
+    var cont:Int=0
+    var primo=true
+    var auxnumero=numero
+    for (i in 1 .. auxnumero){
+        if(auxnumero%i==0){
+            cont++
+
+        }
+        if (cont>2){
+            return false
+        }
+    }
+
+    if(primo){
+        println("El numero $numero es primo")
+        return primo
+    }else
+        println("El numero $numero no es primo")
+    return primo
+}
+//Ejercicio 19: Crea una función que, dada una cadena de texto, elimine todas las
+//vocales de la cadena.
+
+fun borrarCadena(cadena:String):String{
+    var cadena_actualizada=""
+
+    for (i in 0 .. cadena.length-1){
+        if(cadena[i]!='a' && cadena[i]!='e' && cadena[i]!='i' && cadena[i]!='o' && cadena[i]!='u'
+            && cadena[i]!='A' && cadena[i]!='E' && cadena[i]!='I' && cadena[i]!='O' && cadena[i]!='U'){
+            cadena_actualizada+=cadena[i]
+        }
+    }
+    return cadena_actualizada
+}
+//Ejercicio 20: Crea una función que calcule el factorial de un número.
+
+fun factorial(n1: Int):Int{
+    var resultado=1
+    for (i in 1 .. n1) {
+        resultado*=i
+    }
+    return resultado
+}
+//Ejercicio 21: Crea una función que invierta una cadena de texto. Por ejemplo, "hola" debería convertirse en
+//"aloh".
+fun invierte(cadena:String):String{
+    var cadena_actualizada=""
+    cadena_actualizada=cadena.reversed()
+
+    return cadena_actualizada
+
+}
+//Ejercicio 22: Crea una función que, dado un número, devuelva True si es un número perfecto (la suma de
+//sus divisores propios positivos es igual al número), o False en caso contrario.
+
+    fun perfecto(numero: Int):Boolean{
+        var cont=0
+        var perfecto=false
+        for (i in 1 .. numero-1){
+            if(numero%i==0){
+                cont+=i
+            }
+        }
+        if(cont==numero){
+            perfecto=true
+            return perfecto
+        }else
+            return perfecto
+    }
+//Ejercicio 23: Crea una función que, dado un número entero, devuelva True si es un número Armstrong (un
+//número que es igual a la suma de sus propios dígitos elevados a una potencia). Por ejemplo, 153 es un
+//número Armstrong porque 1^3 + 5^3 + 3^3 = 153.
+
+fun Armstrong(numero: Int):Boolean{
+    var Armstrong=false
+    var arms=0
+    var longitud=numero.toString()
+    var potencia= longitud.length
+    var numeroAux = 0
+    var aux=numero
+    for (i in 0 .. longitud.length-1){
+        numeroAux=aux%10
+        arms+=numeroAux.toDouble().pow(potencia.toDouble()).toInt()
+        aux = aux/10
+    }
+
+    if(arms==numero){
+        Armstrong=true
+    }
+    return Armstrong
+}
+//Ejercicio 24: Crea una función que encuentre el número más grande en una matriz bidimensional
+//(una lista de listas).
+
+
+//Ejercicio 25: Crea una función que encuentre el número más pequeño en una matriz
+//bidimensional (una lista de listas).
+
+
+//Ejercicio 26: Crea una función que, dada una lista de palabras, devuelva la palabra más larga.
+
+
+//Ejercicio 27: Crea una función que, dada una lista de palabras, devuelva la palabra más corta.
+
+
+//Ejercicio 28: Crea una función que determine si una cadena de texto contiene solo
+//caracteres alfabéticos (letras) y espacios en blanco.
+
+
+//Ejercicio 29: Crea una función que determine si una cadena de texto es un
+//anagrama de otra cadena. Dos palabras son anagramas si tienen las mismas letras,
+//pero en un orden diferente.
+
+
+//Ejercicio 30: Crea una función que, dado un número entero, devuelva True si es un
+//número triangular (puede representarse como un triángulo equilátero de puntos), o
+//False en caso contrario.
