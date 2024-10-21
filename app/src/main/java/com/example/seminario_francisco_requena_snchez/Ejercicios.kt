@@ -33,6 +33,14 @@ fun main(){
     println("Ejercicio 21: "+invierte("hola"))
     println("Ejercicio 22: "+perfecto(26))
     println("Ejercicio 23: "+Armstrong(153))
+    println("Ejercicio 24: "+mayorMatriz(listOfArrays))
+    println("Ejercicio 25: "+menorMatriz(listOfArrays))
+    println("Ejercicio 26: "+palabraMasLarga(listOf("hola","como","estas")))
+    println("Ejercicio 27: "+palabraMasCorta(listOf("hola","como","estas")))
+    println("Ejercicio 28: "+soloLetras("hola como estas"))
+    println("Ejercicio 29: "+anagrama("amor","roma"))
+    println("Ejercicio 30: "+isTriangular(15))
+
 }
 //Ejercicio 1. Crea una función que obtenga el número máximo de una lista de
 //números
@@ -461,27 +469,121 @@ fun Armstrong(numero: Int):Boolean{
 }
 //Ejercicio 24: Crea una función que encuentre el número más grande en una matriz bidimensional
 //(una lista de listas).
+fun mayorMatriz(lista:List<IntArray>):Int{
+    var mayor=0
+    for(lista in lista){
+        for (numero in lista){
+            if(numero>mayor){
+                mayor=numero
+                }
+            }
+        }
+    return mayor
+}
+
 
 
 //Ejercicio 25: Crea una función que encuentre el número más pequeño en una matriz
 //bidimensional (una lista de listas).
+fun menorMatriz(lista:List<IntArray>):Int{
+    var menor=lista[0][0]
+    for(lista in lista) {
+        for (numero in lista) {
+            if (numero < menor) {
+                menor = numero
+            }
+        }
+    }
+            return menor
+}
 
 
 //Ejercicio 26: Crea una función que, dada una lista de palabras, devuelva la palabra más larga.
-
+fun palabraMasLarga(lista:List<String>):String{
+    var palabra=""
+    for(lista in lista) {
+        if (lista.length > palabra.length) {
+            palabra = lista
+        }
+    }
+    return palabra
+}
 
 //Ejercicio 27: Crea una función que, dada una lista de palabras, devuelva la palabra más corta.
+fun palabraMasCorta(lista:List<String>):String {
+    var palabra = lista[0]
+    for (lista in lista) {
+        if (lista.length < palabra.length) {
+            palabra = lista
+        }
+    }
+    return palabra
+}
 
 
 //Ejercicio 28: Crea una función que determine si una cadena de texto contiene solo
 //caracteres alfabéticos (letras) y espacios en blanco.
 
+fun soloLetras(cadena:String):Boolean{
+    var soloLetras=true
+    for (i in 0 .. cadena.length-1) {
+        if (!cadena[i].isLetter()) {
+            soloLetras = false
+        }
+    }
+    return soloLetras
+}
+
 
 //Ejercicio 29: Crea una función que determine si una cadena de texto es un
 //anagrama de otra cadena. Dos palabras son anagramas si tienen las mismas letras,
 //pero en un orden diferente.
+fun anagrama(cadena1:String,cadena2:String):Boolean {
+    var anagrama = false
+    var aux1=""
+    var aux2=""
+    var cont=0
+    if(cadena1.length!=cadena2.length) {
+        return anagrama
+    }else{
+    for (i in 0 .. cadena1.length-1){
+        aux1+=cadena1[i]
+        aux2+=cadena2[i]
+        for (j in 0 .. aux1.length-1){
+            if(aux1[j]==aux2[j]){
 
+            }
+        }
 
+        }
+    return anagrama
+}
+}
 //Ejercicio 30: Crea una función que, dado un número entero, devuelva True si es un
 //número triangular (puede representarse como un triángulo equilátero de puntos), o
 //False en caso contrario.
+/**
+ * Checks if a given integer is a triangular number.
+ *
+ * A triangular number can be represented as an equilateral triangle of points.
+ * For example, 1, 3, 6, 10, 15 are triangular numbers.
+ *
+ * @param number The integer to check.
+ * @return True if the number is triangular, False otherwise.
+ */
+fun isTriangular(number: Int): Boolean {
+    if (number < 0) {
+        return false
+    }
+
+    var sum = 0
+    var i = 1
+    while (sum < number) {
+        sum += i
+        if (sum == number) {
+            return true
+        }
+        i++
+    }
+    return false
+}
